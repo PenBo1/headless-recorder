@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Headless Recorder 录制器",
+    "description": "扩展程序名称"
+  },
+  "extDescription": {
+    "message": "用于记录浏览器交互并生成 Puppeteer 和 Playwright 脚本的 Chrome 扩展",
+    "description": "扩展程序描述"
+  }
+}
