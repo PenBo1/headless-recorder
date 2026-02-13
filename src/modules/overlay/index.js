@@ -78,8 +78,13 @@ export default class Overlay {
       return
     }
 
-    document.body.removeChild(this.overlayContainer)
-    document.body.removeChild(this.selectorContainer)
+    if (this.overlayContainer && this.overlayContainer.parentNode) {
+      this.overlayContainer.parentNode.removeChild(this.overlayContainer)
+    }
+
+    if (this.selectorContainer && this.selectorContainer.parentNode) {
+      this.selectorContainer.parentNode.removeChild(this.selectorContainer)
+    }
 
     this.overlayContainer = null
     this.overlayApp = null

@@ -9,8 +9,8 @@
   >
     <template v-if="isStopped">
       <div class="hr-success-message">
-        <h3>Recording finished!</h3>
-        <p>You can copy the code to clipboard right away!</p>
+        <h3>录制完成！</h3>
+        <p>您可以立即将代码复制到剪贴板！</p>
       </div>
       <div class="hr-success-bar">
         <button @click="copy" class="hr-btn-large" style="width: 151px;">
@@ -19,14 +19,14 @@
             width="16"
             height="16"
             :src="getIcon('duplicate')"
-            alt="copy to clipboard"
+            alt="复制到剪贴板"
           />
-          <span v-show="!isCopying">Copy to clipboard</span>
-          <span v-show="isCopying">Copied!</span>
+          <span v-show="!isCopying">复制到剪贴板</span>
+          <span v-show="isCopying">已复制！</span>
         </button>
         <button @click="restart" class="hr-btn-large">
-          <img width="16" height="16" :src="getIcon('sync')" alt="restart recording" />
-          Restart Recording
+          <img width="16" height="16" :src="getIcon('sync')" alt="重新开始录制" />
+          重新开始录制
         </button>
         <button @click="close" class="btn-close">
           &times;
@@ -36,44 +36,44 @@
     <template v-else>
       <div class="hr-rec" v-show="!isPaused">
         <span class="hr-red-dot"></span>
-        REC
+        录制中
       </div>
       <span class="hr-shortcut">
-        alt + k to hide
+        alt + k 隐藏
       </span>
       <button
         class="hr-btn"
-        title="stop"
+        title="停止"
         @click="stop"
-        v-tippy="{ content: 'Stop Recording', appendTo: 'parent' }"
+        v-tippy="{ content: '停止录制', appendTo: 'parent' }"
       >
         <div class="hr-stop-square"></div>
       </button>
       <button
         class="hr-btn"
-        title="pause"
+        title="暂停"
         @click="pause"
-        v-tippy="{ content: isPaused ? 'Resume Recording' : 'Pause Recording', appendTo: 'parent' }"
+        v-tippy="{ content: isPaused ? '恢复录制' : '暂停录制', appendTo: 'parent' }"
       >
-        <img v-show="isPaused" width="27" height="27" :src="getIcon('play')" alt="play" />
-        <img v-show="!isPaused" width="27" height="27" :src="getIcon('pause')" alt="pause" />
+        <img v-show="isPaused" width="27" height="27" :src="getIcon('play')" alt="播放" />
+        <img v-show="!isPaused" width="27" height="27" :src="getIcon('pause')" alt="暂停" />
       </button>
       <div class="hr-separator"></div>
       <button
         :disabled="isPaused"
         class="hr-btn-big"
         @click.prevent="fullScreenshot"
-        v-tippy="{ content: 'Full Screenshot (alt+shift+F)', appendTo: 'parent' }"
+        v-tippy="{ content: '全屏截图 (alt+shift+F)', appendTo: 'parent' }"
       >
-        <img width="27" height="27" :src="getIcon('screen')" alt="full page sreenshot" />
+        <img width="27" height="27" :src="getIcon('screen')" alt="全屏截图" />
       </button>
       <button
         :disabled="isPaused"
         class="hr-btn-big"
         @click.prevent="clippedScreenshot"
-        v-tippy="{ content: 'Element Screenshot (alt+shift+E)', appendTo: 'parent' }"
+        v-tippy="{ content: '元素截图 (alt+shift+E)', appendTo: 'parent' }"
       >
-        <img width="27" height="27" :src="getIcon('clip')" alt="clipped sreenshot" />
+        <img width="27" height="27" :src="getIcon('clip')" alt="元素截图" />
       </button>
       <div class="hr-separator"></div>
       <span class="hr-current-selector">
@@ -124,7 +124,7 @@ export default {
     ...mapMutations(['copy', 'stop', 'close', 'restart']),
 
     getIcon(icon) {
-      return browser.runtime.getURL(`icons/${this.darkMode ? 'dark' : 'light'}/${icon}.svg`)
+      return chrome.runtime.getURL(`icons/${this.darkMode ? 'dark' : 'light'}/${icon}.svg`)
     },
 
     toggle() {

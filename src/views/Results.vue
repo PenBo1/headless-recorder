@@ -28,7 +28,7 @@
       <code ref="code" class="javascript bg-black dark:bg-black-shady px-2 break-word whitespace-pre-wrap overflow-x-hidden"></code>
       </pre>
       <pre v-else>
-        <code>No code yet...</code>
+        <code>暂无代码...</code>
       </pre>
     </div>
   </div>

@@ -3,6 +3,14 @@ As of Dec 16th 2022, Headless Recorder is fully deprecated. No new changes, supp
 
 For more information and possible alternatives refer to this [issue](https://github.com/checkly/headless-recorder/issues/232).
 
+## 🛡️ Security & Maintenance Update (2026)
+
+This project has been updated to address critical security vulnerabilities and compatibility issues:
+
+- **Security Fix**: Passwords are now masked (`PASSWORD_MASKED`) in recorded scripts to prevent credential leakage.
+- **Compatibility**: Updated build scripts to support Node.js 17+ (OpenSSL legacy provider).
+- **Dependencies**: Removed unused dependencies and updated core Vue libraries.
+
 </p>
 
 <p align="center">

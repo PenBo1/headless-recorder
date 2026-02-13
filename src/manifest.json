@@ -1,14 +1,17 @@
 {
   "name": "Headless Recorder",
   "version": "1.0.0",
-  "manifest_version": 2,
-  "description": "A Chrome extension for recording browser interaction and generating Puppeteer & Playwright scripts",
-  "default_locale": "en",
+  "manifest_version": 3,
+  "description": "__MSG_extDescription__",
+  "default_locale": "zh_CN",
   "permissions": [
     "storage",
     "webNavigation",
     "activeTab",
     "cookies",
+    "scripting"
+  ],
+  "host_permissions": [
     "*://*/"
   ],
   "icons" : {
@@ -16,14 +19,10 @@
     "48": "icons/48.png",
     "128": "icons/128.png"
   },
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "background": {
-    "scripts": [
-      "js/background.js"
-    ],
-    "persistent": false
+    "service_worker": "js/background.js"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
     "default_title": "__MSG_extName__",
     "default_icon": {
@@ -37,17 +36,22 @@
     "open_in_tab": true
   },
   "web_accessible_resources": [
-    "icons/dark/play.svg",
-    "icons/light/play.svg",
-    "icons/dark/pause.svg",
-    "icons/light/pause.svg",
-    "icons/dark/screen.svg",
-    "icons/light/screen.svg",
-    "icons/dark/clip.svg",
-    "icons/light/clip.svg",
-    "icons/dark/sync.svg",
-    "icons/light/sync.svg",
-    "icons/dark/duplicate.svg",
-    "icons/light/duplicate.svg"
+    {
+      "resources": [
+        "icons/dark/play.svg",
+        "icons/light/play.svg",
+        "icons/dark/pause.svg",
+        "icons/light/pause.svg",
+        "icons/dark/screen.svg",
+        "icons/light/screen.svg",
+        "icons/dark/clip.svg",
+        "icons/light/clip.svg",
+        "icons/dark/sync.svg",
+        "icons/light/sync.svg",
+        "icons/dark/duplicate.svg",
+        "icons/light/duplicate.svg"
+      ],
+      "matches": ["<all_urls>"]
+    }
   ]
 }

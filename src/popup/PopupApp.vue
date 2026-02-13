@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-lightest dark:bg-black flex flex-col overflow-hidden">
+  <div class="bg-gray-lightest dark:bg-black flex flex-col overflow-hidden h-screen">
     <Header @options="openOptions" @help="goHelp" @dark="toggleDarkMode" />
 
     <Home v-if="!showResultsTab && !isRecording" @start="toggleRecord" />
@@ -25,27 +25,27 @@
     <!-- TODO: Move this into its own component -->
     <div
       data-test-id="results-footer"
-      class="flex py-2 px-3 justify-between bg-black-shady"
+      class="flex py-2 px-3 justify-between bg-black-shady gap-2"
       v-show="showResultsTab"
     >
-      <Button dark class="mr-2" @click="restart" v-show="code">
-        <img src="/icons/dark/sync.svg" class="mr-1" alt="restart recording" />
-        Restart
+      <Button dark class="flex-1" @click="restart" v-show="code">
+        <img src="/icons/dark/sync.svg" class="mr-1" alt="重新录制" />
+        重新录制
       </Button>
-      <Button dark class="mr-2 w-34" @click="copyCode" v-show="code">
+      <Button dark class="flex-1" @click="copyCode" v-show="code">
         <img
           v-show="!isCopying"
           src="/icons/dark/duplicate.svg"
           class="mr-1"
-          alt="copy code to clipboard"
+          alt="复制代码"
         />
-        <span v-show="!isCopying">Copy to clipboard</span>
-        <span v-show="isCopying">Copied!</span>
+        <span v-show="!isCopying">复制代码</span>
+        <span v-show="isCopying">已复制！</span>
       </Button>
-      <Button @click="run" v-show="code">
-        <img src="/icons/light/zap.svg" class="mr-1" alt="thunder" />
-        Run on Checkly
-      </Button>
+      <!-- <Button @click="run" v-show="code">
+        <img src="/icons/light/zap.svg" class="mr-1" alt="运行" />
+        在 Checkly 运行
+      </Button> -->
     </div>
 
     <Footer v-if="!isRecording && !showResultsTab" />
@@ -262,13 +262,13 @@ export default {
       return this.currentResultTab === 'puppeteer' ? this.code : this.codeForPlaywright
     },
 
-    run() {
-      browser.openChecklyRunner({
-        code: this.getCode(),
-        runner: this.currentResultTab,
-        isLoggedIn: this.isLoggedIn,
-      })
-    },
+    // run() {
+    //   browser.openChecklyRunner({
+    //     code: this.getCode(),
+    //     runner: this.currentResultTab,
+    //     isLoggedIn: this.isLoggedIn,
+    //   })
+    // },
   },
 }
 </script>

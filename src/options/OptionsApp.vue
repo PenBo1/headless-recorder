@@ -1,15 +1,15 @@
 <template>
   <main class="bg-gray-lightest flex py-9 w-full h-screen overflow-auto dark:bg-black">
     <div class="flex flex-col w-1/4 pt-12 pr-6">
-      <a href="https://www.checklyhq.com/docs/headless-recorder/" target="_blank">Docs</a>
+      <a href="https://www.checklyhq.com/docs/headless-recorder/" target="_blank">文档</a>
       <a href="https://github.com/checkly/headless-recorder" target="_blank">GitHub</a>
       <a href="https://github.com/checkly/headless-recorder/blob/main/CHANGELOG.md"
-        >Release notes</a
+        >发布说明</a
       >
       <a
         href="https://chrome.google.com/webstore/detail/headless-recorder/djeegiggegleadkkbgopoonhjimgehda"
         target="_blank"
-        >Chrome Web Store</a
+        >Chrome 商店</a
       >
     </div>
     <div class="flex flex-col w-1/2">
@@ -24,13 +24,13 @@
           role="alert"
           class="text-gray-darkest dark:text-white text-base font-semibold"
           v-show="saving"
-          >Saving...</span
+          >保存中...</span
         >
       </header>
 
       <section>
-        <h2>Recorder</h2>
-        <label for="custom-data-attribute">Custom data attribute</label>
+        <h2>录制器设置</h2>
+        <label for="custom-data-attribute">自定义数据属性</label>
         <div class="mb-6">
           <input
             id="custom-data-attribute"
@@ -38,72 +38,69 @@
             type="text"
             v-model.trim="options.code.dataAttribute"
             @change="save"
-            placeholder="your custom data-* attribute"
+            placeholder="您的自定义 data-* 属性"
           />
           <p>
-            Define an attribute that we'll attempt to use when selecting the elements, i.e
-            "data-custom". This is handy when React or Vue based apps generate random class names.
+            定义一个我们在选择元素时尝试使用的属性，例如
+            "data-custom"。这在 React 或 Vue 应用生成随机类名时非常有用。
           </p>
           <p>
             <span role="img" aria-label="siren">🚨</span>
             <span class="ml-1 font-bold text-black-shady dark:text-white"
-              >When <span class="italic">"custom data attribute"</span>&nbsp; is set, it will take
-              precedence from over any other selector (even ID)
+              >当设置了 <span class="italic">"自定义数据属性"</span>&nbsp; 时，它将优先于任何其他选择器（甚至 ID）
             </span>
           </p>
         </div>
         <div>
-          <label>Set key code</label>
+          <label>设置按键代码</label>
           <div class="mb-2">
             <Button @click="listenForKeyCodePress" class="font-semibold text-white text-sm">
-              {{ recordingKeyCodePress ? 'Capturing...' : 'Record Key Stroke' }}
+              {{ recordingKeyCodePress ? '捕获中...' : '录制按键' }}
             </Button>
             <span class="text-gray-dark dark:text-gray-light text-sm ml-3">
               {{ options.code.keyCode }}
             </span>
           </div>
           <p>
-            What key will be used for capturing input changes. The value here is the key code. This
-            will not handle multiple keys.
+            用于捕获输入更改的按键。此处的值是按键代码。不支持多个按键组合。
           </p>
         </div>
       </section>
 
       <section>
-        <h2>Generator</h2>
+        <h2>代码生成器设置</h2>
         <Toggle v-model="options.code.wrapAsync">
-          Wrap code in async function
+          将代码包裹在异步函数中
         </Toggle>
         <Toggle v-model="options.code.headless">
-          Set <code>headless</code> in playwright/puppeteer launch options
+          在 playwright/puppeteer 启动选项中设置 <code>headless</code>
         </Toggle>
         <Toggle v-model="options.code.waitForNavigation">
-          Add <code>waitForNavigation</code> lines on navigation
+          在导航时添加 <code>waitForNavigation</code> 行
         </Toggle>
         <Toggle v-model="options.code.waitForSelectorOnClick">
-          Add <code>waitForSelector</code> lines before every
-          <code>page.click()</code>
+          在每个 <code>page.click()</code> 之前添加 <code>waitForSelector</code> 行
         </Toggle>
         <Toggle v-model="options.code.blankLinesBetweenBlocks">
-          Add blank lines between code blocks
+          在代码块之间添加空行
         </Toggle>
         <Toggle v-model="options.code.showPlaywrightFirst">
-          Show Playwright tab first
+          优先显示 Playwright 标签页
         </Toggle>
       </section>
 
       <section>
-        <h2 class="">Extension</h2>
+        <h2 class="">扩展设置</h2>
         <Toggle v-model="options.extension.darkMode">
-          Use Dark Mode {{ options.extension.darkMode }}
+          使用深色模式 {{ options.extension.darkMode }}
         </Toggle>
-        <Toggle v-model="options.extension.telemetry">
-          Allow recording of usage telemetry
+        <!-- <Toggle v-model="options.extension.telemetry">
+          允许记录使用遥测数据
         </Toggle>
         <p>
-          We only record clicks for basic product development, no website content or input data.
-          Data is never, ever shared with 3rd parties.
-        </p>
+          我们仅记录点击数据用于基础产品开发，不会记录网站内容或输入数据。
+          数据绝不会与第三方共享。
+        </p> -->
       </section>
     </div>
   </main>
@@ -123,7 +120,7 @@ import Toggle from '@/components/Toggle'
 const defaultOptions = {
   code,
   extension: {
-    telemetry: true,
+    // telemetry: true,
     darkMode: isDarkMode(),
   },
 }
